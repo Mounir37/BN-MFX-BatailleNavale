@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Mounir-Yann.FIAUX/Documents/GitHub/Bataille_Navale/BN-MFX-BatailleNavale/main.c
+stdio.h
+-
+stdlib.h
+-
+windows.h
+-
+
