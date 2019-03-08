@@ -1,8 +1,26 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <windows.h>
-
 #pragma execution_character_set("utf-8")
+#define STLC 218 // ┌, Single Top Left Corner
+#define STRC 191 // ┐, Single Top Right Corner
+#define SBLC 192 // └, Single Bottom Left Corner
+#define SBRC 217 // ┘, Single Bottom Right Corner
+#define SVSB 179 // │, Single Vertical Simple Border
+#define SVRB 180 // ┤, Single Vertical Right Border
+#define SVLB 195 // ├, Single Vertical Left Border
+#define SHSB 196 // ─, Single Horizontal Simple Border
+#define SHBB 193 // ┴, Single Horizontal Bottom Border
+#define SHTB 194 // ┬, Single Horizontal Top Border
+#define SC   197 // ┼, Single Center
+#define grille 10
+
+void Grille_S_Mod();
+    int tableau [grille][grille];
+
+    for(int i = 0; i < grille; i++){
+         for (int a = 0; i a++)}
+
+
 
 int main()
 {
@@ -26,15 +44,18 @@ int main()
                    "1 sous-marin (3 cases)\n"
                    "1 torpilleur (2 cases)\n");
 
-        } else if (choix == 2)
+        }
+        else if (choix == 2)
         {
             printf("jdfvhioszgiw2222222222222222222222222222222222222222");
             break;
-        } else if (choix == 3)
+        }
+        else if (choix == 3)
         {
             printf("oighuklsdfhgs33333333333333333333333333333");
             break;
-        } else
+        }
+        else
         {
             printf("ce n'est pas un choix\n");
         }
