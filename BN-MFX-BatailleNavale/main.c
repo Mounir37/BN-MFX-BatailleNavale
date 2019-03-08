@@ -17,8 +17,13 @@
 void Grille_S_Mod();
     int tableau [grille][grille];
 
-    for(int i = 0; i < grille; i++){
-         for (int a = 0; i a++)}
+    for(i = 0; i < grille; ++i)
+    {
+         for (a = 0; a < grille; ++a)
+         {
+            printf("test");
+         }
+    }
 
 
 
