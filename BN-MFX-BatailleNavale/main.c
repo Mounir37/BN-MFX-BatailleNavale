@@ -38,7 +38,6 @@ int main()
         {
             printf("ce n'est pas un choix\n");
         }
-
     }
     return 0;
 }
