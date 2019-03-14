@@ -14,17 +14,6 @@
 #define SC   197 // ┼, Single Center
 #define grille 10
 
-void Grille_S_Mod();
-    int tableau [grille][grille];
-
-    for(i = 0; i < grille; ++i)
-    {
-         for (a = 0; a < grille; ++a)
-         {
-            printf("test");
-         }
-    }
-
 
 
 int main()
