@@ -14,23 +14,56 @@
 #define SC   197 // ┼, Single Center
 #define grille 10
 
-void Grille_S_Mod(int tableau);
-    int tableau [grille][grille];
+void Grille_S_Mod()
+{
+    int tableau[grille][grille];
 
-    for(i = 0; i < grille; i++)
+    for(int i = 0; i < grille; i++)
     {
-        printf("test 2")
-        for (a = 0; a < grille; a++)
+        for(int a = 0; a < grille; a++)
         {
-        printf("test");
+            tableau[i][a] = 0;
+        }
+    }
+    printf("\n\n   A   B   C   D   E   F   G   H   I   J\n");
+    for (int i = 0; i < grille; i++)
+    {
+        printf("  ");
+        if (i == 0)
+        {
+            printf("%c",STLC);
+        }
+        else{
+            printf("%c",SVLB);
+        }
+        if(i == 0)
+        {
+            for (int b = 0; b < grille-1; b++)
+            {
+                printf("%c%c%c",SHSB,SHSB,SHSB);
+                printf("%c",SHTB);
+            }
+            printf("%c%c%c",SHSB,SHSB,SHSB);
+        }
+        else{
+            for (int b = 0; b < grille-1; b++)
+            {
+                printf("%c%c%c",SHSB,SHSB,SHSB);
+                printf("%c",SC);
+            }
+            printf("%c%c%c",SHSB,SHSB,SHSB);
         }
     }
 
 
 
+
+
+}
+
 int main()
 {
-
+    int test = -1;
     int choix = 0;
     SetConsoleOutputCP(65001);
 
@@ -48,13 +81,14 @@ int main()
                    "1 croiseur (4 cases)\n"
                    "1 contre torpilleur (3 cases)\n"
                    "1 sous-marin (3 cases)\n"
-                   "1 torpilleur (2 cases)\n");
+                   "1 torpilleur (2 cases)\n\n\n");
 
         }
         else if (choix == 2)
         {
-            printf("jdfvhioszgiw2222222222222222222222222222222222222222");
-            break;
+            Grille_S_Mod();
+            scanf("%d",&test);
+            return 0;
         }
         else if (choix == 3)
         {
@@ -66,5 +100,4 @@ int main()
             printf("ce n'est pas un choix\n");
         }
     }
-    return 0;
 }
