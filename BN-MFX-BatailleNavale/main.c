@@ -14,6 +14,18 @@
 #define SC   197 // ┼, Single Center
 #define grille 10
 
+void Grille_S_Mod(int tableau);
+    int tableau [grille][grille];
+
+    for(i = 0; i < grille; i++)
+    {
+        printf("test 2")
+        for (a = 0; a < grille; a++)
+        {
+        printf("test");
+        }
+    }
+
 
 
 int main()
@@ -28,7 +40,7 @@ int main()
                "1:  pour afficher l'aide.\n"
                "2:  pour commencer une partie contre une IA.\n"
                "3:  pour lancer le didacticiel:\n");
-        scanf("%d", &choix);
+        scanf("%d",&choix);
         if (choix == 1)
         {
             printf("Une grille de jeu numérotée de 1 à 10 horizontalement et de A à J verticalement.\n"
