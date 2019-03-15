@@ -14,53 +14,32 @@
 #define SC   197 // ┼, Single Center
 #define grille 10
 
-void Grille_S_Mod()
-{
-    int tableau[grille][grille];
 
-    for(int i = 0; i < grille; i++)
+void top_border(int largeur){
+    printf("┌");
+    for (int i = 0; i < largeur-1 ; ++i)
     {
-        for(int a = 0; a < grille; a++)
-        {
-            tableau[i][a] = 0;
-        }
+        printf("─┬");
     }
-    printf("\n\n   A   B   C   D   E   F   G   H   I   J\n");
-    for (int i = 0; i < grille; i++)
-    {
-        printf("  ");
-        if (i == 0)
-        {
-            printf("%c",STLC);
-        }
-        else{
-            printf("%c",SVLB);
-        }
-        if(i == 0)
-        {
-            for (int b = 0; b < grille-1; b++)
-            {
-                printf("%c%c%c",SHSB,SHSB,SHSB);
-                printf("%c",SHTB);
-            }
-            printf("%c%c%c",SHSB,SHSB,SHSB);
-        }
-        else{
-            for (int b = 0; b < grille-1; b++)
-            {
-                printf("%c%c%c",SHSB,SHSB,SHSB);
-                printf("%c",SC);
-            }
-            printf("%c%c%c",SHSB,SHSB,SHSB);
-        }
-    }
-
-
-
-
-
+    printf("─┐\n");
 }
-
+void Vertical_bar(int largeur)
+{
+    for (int j = 0; j < largeur; ++j)
+    {
+        printf("│ ");
+    }
+    printf("│\n");
+}
+void horizontal_bar(int largeur)
+{
+    printf("├");
+    for (int k = 0; k < largeur - 1; ++k)
+    {
+        printf("─┼");
+    }
+    printf("─┤\n");
+}
 int main()
 {
     int test = -1;
@@ -74,7 +53,11 @@ int main()
                "2:  pour commencer une partie contre une IA.\n"
                "3:  pour lancer le didacticiel:\n");
         scanf("%d",&choix);
-        if (choix == 1)
+        if (choix == 0)
+        {
+            return 0;
+        }
+        else if (choix == 1)
         {
             printf("Une grille de jeu numérotée de 1 à 10 horizontalement et de A à J verticalement.\n"
                    "1 porte avion (5 cases)\n"
@@ -86,18 +69,23 @@ int main()
         }
         else if (choix == 2)
         {
-            Grille_S_Mod();
+            top_border(grille);
+            for (int l = 0; l < grille-1 ; ++l)
+            {
+                Vertical_bar(grille);
+                horizontal_bar(grille);
+            }
+
             scanf("%d",&test);
-            return 0;
         }
         else if (choix == 3)
         {
             printf("oighuklsdfhgs33333333333333333333333333333");
-            break;
         }
         else
         {
             printf("ce n'est pas un choix\n");
         }
     }
+
 }
