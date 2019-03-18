@@ -1,3 +1,3 @@
-"C:\Program Files\CLion\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\BN_MFX_BatailleNavale.dir/objects.a
-C:\MinGW\bin\ar.exe cr CMakeFiles\BN_MFX_BatailleNavale.dir/objects.a @CMakeFiles\BN_MFX_BatailleNavale.dir\objects1.rsp
-C:\MinGW\bin\gcc.exe -g   -Wl,--whole-archive CMakeFiles\BN_MFX_BatailleNavale.dir/objects.a -Wl,--no-whole-archive  -o BN_MFX_BatailleNavale.exe -Wl,--out-implib,libBN_MFX_BatailleNavale.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\BN_MFX_BatailleNavale.dir\linklibs.rsp
+"E:\Clion\CLion 2018.3.4\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\BN_MFX_BatailleNavale.dir/objects.a
+E:\Clion\bin\ar.exe cr CMakeFiles\BN_MFX_BatailleNavale.dir/objects.a @CMakeFiles\BN_MFX_BatailleNavale.dir\objects1.rsp
+E:\Clion\bin\gcc.exe -g   -Wl,--whole-archive CMakeFiles\BN_MFX_BatailleNavale.dir/objects.a -Wl,--no-whole-archive  -o BN_MFX_BatailleNavale.exe -Wl,--out-implib,libBN_MFX_BatailleNavale.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\BN_MFX_BatailleNavale.dir\linklibs.rsp

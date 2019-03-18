@@ -9,7 +9,7 @@
 #define SVRB 180 // ┤, Single Vertical Right Border
 #define SVLB 195 // ├, Single Vertical Left Border
 #define SHSB 196 // ─, Single Horizontal Simple Border
-#define SHBB 193 // ┴, Single Horizontal Bottom Border
+#define SHBB 193 // , Single Horizontal Bottom Border
 #define SHTB 194 // ┬, Single Horizontal Top Border
 #define SC   197 // ┼, Single Center
 #define grille 10
@@ -23,22 +23,35 @@ void top_border(int largeur){
     }
     printf("─┐\n");
 }
-void Vertical_bar(int largeur)
+void Total_Bar(int largeur)
 {
+    for (int m = 0; m < largeur - 2; ++m)
+    {
+        for (int j = 0; j < largeur; ++j) {
+            printf("│ ");
+        }
+        printf("│\n");
+        printf("├");
+        for (int k = 0; k < largeur - 1; ++k)
+        {
+            printf("─┼");
+        }
+        printf("─┤\n");
+    }
     for (int j = 0; j < largeur; ++j)
     {
         printf("│ ");
     }
-    printf("│\n");
+    printf("│\n");}
 }
-void horizontal_bar(int largeur)
+void Bottom_border(int largeur)
 {
-    printf("├");
-    for (int k = 0; k < largeur - 1; ++k)
+    printf("└");
+    for (int l = 0; l < largeur - 1; ++l)
     {
-        printf("─┼");
+        printf("─┴");
     }
-    printf("─┤\n");
+    printf("─┘");
 }
 int main()
 {
@@ -65,16 +78,12 @@ int main()
                    "1 contre torpilleur (3 cases)\n"
                    "1 sous-marin (3 cases)\n"
                    "1 torpilleur (2 cases)\n\n\n");
-
         }
         else if (choix == 2)
         {
             top_border(grille);
-            for (int l = 0; l < grille-1 ; ++l)
-            {
-                Vertical_bar(grille);
-                horizontal_bar(grille);
-            }
+            Total_Bar(grille);
+            Bottom_border(grille);
 
             scanf("%d",&test);
         }
