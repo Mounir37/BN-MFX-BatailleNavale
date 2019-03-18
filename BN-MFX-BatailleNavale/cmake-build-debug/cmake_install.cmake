@@ -1,4 +1,4 @@
-# Install script for directory: E:/Clion/Clion_projects/Bataille_Navale
+# Install script for directory: C:/Users/Mounir-Yann.FIAUX/Documents/GitHub/Bataille_Navale/BN-MFX-BatailleNavale
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "E:/Clion/Clion_projects/Bataille_Navale/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/Mounir-Yann.FIAUX/Documents/GitHub/Bataille_Navale/BN-MFX-BatailleNavale/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

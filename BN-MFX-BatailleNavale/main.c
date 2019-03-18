@@ -19,39 +19,39 @@ void top_border(int largeur){
     printf("┌");
     for (int i = 0; i < largeur-1 ; ++i)
     {
-        printf("─┬");
+        printf("──┬");
     }
-    printf("─┐\n");
+    printf("──┐\n");
 }
 void Total_Bar(int largeur)
 {
     for (int m = 0; m < largeur - 2; ++m)
     {
         for (int j = 0; j < largeur; ++j) {
-            printf("│ ");
+            printf("│  ");
         }
         printf("│\n");
         printf("├");
         for (int k = 0; k < largeur - 1; ++k)
         {
-            printf("─┼");
+            printf("──┼");
         }
-        printf("─┤\n");
+        printf("──┤\n");
     }
     for (int j = 0; j < largeur; ++j)
     {
-        printf("│ ");
+        printf("│  ");
     }
-    printf("│\n");}
+    printf("│\n");
 }
 void Bottom_border(int largeur)
 {
     printf("└");
     for (int l = 0; l < largeur - 1; ++l)
     {
-        printf("─┴");
+        printf("──┴");
     }
-    printf("─┘");
+    printf("──┘");
 }
 int main()
 {
@@ -81,6 +81,7 @@ int main()
         }
         else if (choix == 2)
         {
+            printf("   A   B   C   D   E   F   G   H   I   J\n\n");
             top_border(grille);
             Total_Bar(grille);
             Bottom_border(grille);
