@@ -1,3 +1,10 @@
+/*
+ * Auteur: Mounir Fiaux
+ * Projet: Bataille Navale
+ * Titre: BN-MFX-BatailleNavale
+ * Date: 21.03.19
+ * Version: 1.2.5
+ */
 #include <stdio.h>
 #include <windows.h>
 #pragma execution_character_set("utf-8")
@@ -15,43 +22,48 @@
 #define grille 10
 
 
-void top_border(int largeur){
-    printf("┌");
+void top_border(int largeur) //ligne du dessus
+{
+    printf("   ┌");
     for (int i = 0; i < largeur-1 ; ++i)
     {
-        printf("──┬");
+        printf("───┬");
     }
-    printf("──┐\n");
+    printf("───┐\n");
 }
 void Total_Bar(int largeur)
 {
-    for (int m = 0; m < largeur - 2; ++m)
+    for (int m = 0; m < largeur - 1; ++m)
     {
-        for (int j = 0; j < largeur; ++j) {
-            printf("│  ");
+        printf("%d  ",m+1);
+        for (int j = 0; j < largeur; ++j) //première ligne
+        {
+            printf("│   ");
         }
         printf("│\n");
-        printf("├");
-        for (int k = 0; k < largeur - 1; ++k)
+        printf("   ├");
+        for (int k = 0; k < largeur - 1; ++k) //tout les sols sauf dernier
         {
-            printf("──┼");
+            printf("───┼");
         }
-        printf("──┤\n");
+        printf("───┤\n");
     }
-    for (int j = 0; j < largeur; ++j)
+    printf("10 ");
+    for (int j = 0; j < largeur; ++j) //autre ligne espacement
     {
-        printf("│  ");
+
+        printf("│   ");
     }
     printf("│\n");
 }
-void Bottom_border(int largeur)
+void Bottom_border(int largeur) //ligne du bas
 {
-    printf("└");
+    printf("   └");
     for (int l = 0; l < largeur - 1; ++l)
     {
-        printf("──┴");
+        printf("───┴");
     }
-    printf("──┘");
+    printf("───┘");
 }
 int main()
 {
@@ -61,7 +73,36 @@ int main()
 
     while (1)
     {
-        printf("choisissez:\n"
+        printf("                                                                                                                                  _.\n"
+               "                                                                                                                            _.--\"' |\n"
+               "                                                                                                                      _.--\"'       |\n"
+               "                                                                                                                _.--\"'      _..,.  |\n"
+               "                                                                                                          _.--\"'            .==; '.|\n"
+               "                                                                                                    _.--\"'                     :   |'.\n"
+               "                                                                                              _.--\"'                            ;  |  '.\n"
+               "                                                                                        _.--\"'                                  :  |    '.\n"
+               "                                                                                  _.--\"'                                         ; |      '.\n"
+               "                                                                            _.--\"'                         _.                    : |        '.\n"
+               "                                                                      _.--\"'                         _.--^\"  :                   q I     --mmm--\n"
+               "                                                                _.--\"'                              ;      _,.;_                 |_I____._\\___/___._.__\n"
+               "                                                          _.--\"'                                    :_.--^\"   :_]                |______|     ==\" \" \"_|'\n"
+               "                                                  |__.--\"'                                           ;         ;|                |;I H| |_______'(|)|\n"
+               "                                              .   | :                                                :     _   :|                |:I_H|_|______[ '._|    _.---.______\n"
+               "                                              I   | ;             ,    \\                    \\         ;__ [_]___;                |||____________| '_|    \\|   ;\"\"         |\n"
+               "                       ______.---._    ______ I  /|:        \\     ;\\    \\                    \\      ,d.-^'|| '-.b.     ___       L| I|  |\"  |   |_[_|_X__[|___:_,.-^>_.---.______             /|\n"
+               ";                          \"\":\"|'|/    _\\--/  I_/_|;         \\    :/\\ __nm__                _nm   _d______||______b.__EEEE3       | I|__| m |___|__H_____|_ m__|'^|\"  \\|  ;\"\"                //|\n"
+               ";      ______.---._<^-.,_____;___|]__\\|____|_|I___|] .--_____nm____; |_dHH|_|.-           |dHH|_|,-======''==_===;===|====|______|_I|__|_W_|___|__H_____^__W__|__|____|___:___,.--._nnn__m__//_o\n"
+               ":\\         \"\":   |/ \"|  |   __ m ___ .d88b. H m m || |_|-|-|-|-|-|-|  H*''|  .mmmmmmmmm^^\" '|m[]H\"m\"\"\"\"\"\"|   |_| []  [_]   /*  *  * * * * *|_|'\"7 | *  *   *   *   *  *  *  *  *  *     .V.    ;\n"
+               ":_\\__,.,_n_m_;___|]_I|_[|__[__]W_____'Y88P'_H_W_W_||_|_|_|_|_|_|_|_|__H&[]|_____^MMMM^______|W__H%$&$__I_____ -'________.-'                | | /  |                                    ^(8)-  ;\n"
+               "|<    H  * * *  * *  * *  *  * *  * * * * * * * *  *  *  *  *  *   *   *  *  *  *                                                                                       *  *  *   *  *       :\n"
+               "|  _|_H_|_                                           ___________________________________________________________________________________                           [Matzec]                 ;\n"
+               "'-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------'"
+               ""
+               ""
+               ""
+               ""
+               ""
+               "choisissez:\n"
                "1:  pour afficher l'aide.\n"
                "2:  pour commencer une partie contre une IA.\n"
                "3:  pour lancer le didacticiel:\n");
@@ -81,7 +122,7 @@ int main()
         }
         else if (choix == 2)
         {
-            printf("   A   B   C   D   E   F   G   H   I   J\n\n");
+            printf("     A   B   C   D   E   F   G   H   I   J\n");
             top_border(grille);
             Total_Bar(grille);
             Bottom_border(grille);
