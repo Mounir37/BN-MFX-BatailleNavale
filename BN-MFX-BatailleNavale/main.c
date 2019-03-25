@@ -7,21 +7,10 @@
  */
 #include <stdio.h>
 #include <windows.h>
+
 #pragma execution_character_set("utf-8")
-#define STLC 218 // ┌, Single Top Left Corner
-#define STRC 191 // ┐, Single Top Right Corner
-#define SBLC 192 // └, Single Bottom Left Corner
-#define SBRC 217 // ┘, Single Bottom Right Corner
-#define SVSB 179 // │, Single Vertical Simple Border
-#define SVRB 180 // ┤, Single Vertical Right Border
-#define SVLB 195 // ├, Single Vertical Left Border
-#define SHSB 196 // ─, Single Horizontal Simple Border
-#define SHBB 193 // , Single Horizontal Bottom Border
-#define SHTB 194 // ┬, Single Horizontal Top Border
-#define SC   197 // ┼, Single Center
 #define grille 10
 
-void tir();
 
 int tableau1[grille][grille] =
         {{3, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
@@ -84,45 +73,50 @@ void Bottom_border(int largeur) //ligne du bas
     {
         printf("───┴");
     }
-    printf("───┘");
+    printf("───┘\n\n");
 }
 
 void tir()
 {
-    char tir[1];
-    int inputX;
-    int inputY;
+    char tir[10];
+    int ligne;
+    int col;
 
     printf("entrez les coordonées (lettre en majuscule puis nombre)\n");
-    scanf("%c", &tir);
-    int ligne = tir[0] - 65;
-    int col = tir[1] - 49;
+    scanf("%s", &tir);
+    ligne = tir[0] - 65;
+    col = tir[1] - 49;
 
     while (col < 0 || col > 9 || ligne < 0 || ligne > 9)
     {
         printf("ce n'est pas un choix\n");
         printf("entrez les coordonées (lettre en majuscule puis nombre)\n");
+        scanf("%s", &tir);
 
-        int ligne = tir[0] - 65;
-        int col = tir[1] - 49;
+        ligne = tir[0] - 65;
+        col = tir[1] - 49;
     }
 
-    if (tableau1[inputX][inputY] == 1)
+    if (tableau1 [col][ligne] == 1)
     {
         printf("Coulé\n");
-    }
-    else if (tableau1[inputX][inputY] == 2)
+    } else if (tableau1 [col][ligne] == 2)
     {
         printf("touché\n");
-        tableau1[inputX][inputY] = -1;
-    } else {
-        printf("pas touché");
+        tableau1 [col][ligne] = 6;
+    } else if (tableau1 [col][ligne] == 3)
+    {
+        printf("touché\n");
+        tableau1 [col] [ligne]= 6;
+    } else
+    {
+        printf("pas touché\n");
     }
 }
 
+
 int main()
 {
-    int test = -1;
     int choix = 0;
     SetConsoleOutputCP(65001);
 
@@ -182,12 +176,13 @@ int main()
                    "1 torpilleur (2 cases)\n\n\n");
         } else if (choix == 2)
         {
-            top_border(grille);
-            Total_Bar(grille, tableau1[10][10], tableau1[10][10]);
-            Bottom_border(grille);
-
-            tir();
-
+            while (1)
+            {
+                top_border(grille);
+                Total_Bar(grille, tableau1[10][10], tableau1[10][10]);
+                Bottom_border(grille);
+                tir();
+            }
 
         } else if (choix == 3)
         {
@@ -197,5 +192,4 @@ int main()
             printf("ce n'est pas un choix\n");
         }
     }
-
 }

@@ -30,8 +30,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+            <state relative-caret-position="204">
+              <caret line="76" column="1" lean-forward="true" selection-start-line="76" selection-start-column="1" selection-end-line="76" selection-end-column="1" />
               <folding>
                 <element signature="e#126#144#0" expanded="true" />
               </folding>
@@ -44,6 +44,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>test</find>
+      <find>/</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -126,11 +127,12 @@
       <workItem from="1553158889354" duration="1882000" />
       <workItem from="1553178737372" duration="4583000" />
       <workItem from="1553238356449" duration="5190000" />
+      <workItem from="1553498519901" duration="5085000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26646000" />
+    <option name="totallyTimeSpent" value="31731000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
@@ -167,8 +169,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+        <state relative-caret-position="204">
+          <caret line="76" column="1" lean-forward="true" selection-start-line="76" selection-start-column="1" selection-end-line="76" selection-end-column="1" />
           <folding>
             <element signature="e#126#144#0" expanded="true" />
           </folding>
