@@ -48,6 +48,7 @@ void Total_Bar(int largeur, int m, int j)
         for (j = 0; j < largeur; ++j) //première ligne
         {
             printf("│ %c ", '0' + tableau1[m][j]);
+            
         }
         printf("│\n");
         printf("   ├");
