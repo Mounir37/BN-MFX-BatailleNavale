@@ -2,8 +2,8 @@
  * Auteur: Mounir Fiaux
  * Projet: Bataille Navale
  * Titre: BN-MFX-BatailleNavale
- * Date: 22.03.19
- * Version: 1.3.1
+ * Date: 28.03.19
+ * Version: 1.3.3
  */
 #include <stdio.h>
 #include <windows.h>
@@ -14,13 +14,13 @@
 
 int tableau1[grille][grille] =
         {{3, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
-         {3, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
-         {3, 0, 2, 2, 0, 0, 0, 0, 0, 0,},
+         {13, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+         {3, 0, 22, 22, 0, 0, 0, 0, 0, 0,},
+         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+         {0, 0, 0, -1, 0, 0, 0, 0, 0, 0,},
          {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
          {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
-         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
-         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
-         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+         {0, 0, -1, 0, 0, 0, 0, 0, 0, 0,},
          {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
          {0, 0, 0, 0, 0, 0, 0, 0, 0, 1,}};
 
@@ -42,13 +42,24 @@ void top_border(int largeur)
 
 void Total_Bar(int largeur, int m, int j)
 {
+    char display;
     for (m = 0; m < largeur - 1; ++m)
     {
         printf("%3d", m + 1);
         for (j = 0; j < largeur; ++j) //première ligne
         {
-            printf("│ %c ", '0' + tableau1[m][j]);
-            
+            display = '~';
+            if (tableau1[m][j] == -1 ){
+                display = '/';
+            }
+            else if (tableau1[m][j] > 10 && tableau1[m][j] < 20 ){
+                display = 'x';
+            }
+            else if (tableau1[m][j] > 20 && tableau1[m][j] < 30 ){
+                display = 'X';
+            }
+
+            printf("│ %c ", display);
         }
         printf("│\n");
         printf("   ├");
@@ -61,8 +72,18 @@ void Total_Bar(int largeur, int m, int j)
     printf("%3d", largeur);
     for (j = 0; j < largeur; ++j) //autre ligne espacement
     {
+        display = '~';
+        if (tableau1[m][j] == -1 ){
+            display = '/';
+        }
+        else if (tableau1[m][j] > 10 && tableau1[m][j] < 20 ){
+            display = 'x';
+        }
+        else if (tableau1[m][j] > 20 && tableau1[m][j] < 30 ){
+            display = 'X';
+        }
 
-        printf("│ %c ", '0' + tableau1[m][j]);
+        printf("│ %c ", display);
     }
     printf("│\n");
 }
@@ -98,20 +119,17 @@ void tir()
         col = tir[1] - 49;
     }
 
-    if (tableau1 [col][ligne] == 1)
-    {
-        printf("Coulé\n");
-    } else if (tableau1 [col][ligne] == 2)
+    if (tableau1 [col][ligne] > 0 && tableau1[col][ligne] < 10)
     {
         printf("touché\n");
-        tableau1 [col][ligne] = 6;
-    } else if (tableau1 [col][ligne] == 3)
-    {
-        printf("touché\n");
-        tableau1 [col] [ligne]= 6;
+        tableau1[col][ligne] += 10;
+    }else if (tableau1 [col][ligne] > 20 && tableau1[col][ligne] < 30){
+        printf("coulé\n");
+        tableau1[col][ligne] += 10;
     } else
     {
         printf("pas touché\n");
+        tableau1 [col][ligne] = -1;
     }
 }
 
@@ -121,9 +139,9 @@ int main()
     int choix = 0;
     SetConsoleOutputCP(65001);
 
-    printf(""
-           ""
-           ""
+    printf("\n"
+           "\n"
+           "\n"
            "\"                                                                                                                                  _.\\n\"\n"
            "\"                                                                                                                            _.--\\\"' |\\n\"\n"
            "\"                                                                                                                      _.--\\\"'       |\\n\"\n"
