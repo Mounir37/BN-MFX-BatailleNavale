@@ -15,14 +15,16 @@
 int tableau1[grille][grille] =
         {{3, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
          {13, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
-         {3, 0, 22, 22, 0, 0, 0, 0, 0, 0,},
-         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
-         {0, 0, 0, -1, 0, 0, 0, 0, 0, 0,},
-         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
-         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+         {3, 0, 22, 22, 0, 0, 0, 15, 0, 0,},
+         {0, 0, 0, 0, 0, 0, 0, 15, 0, 0,},
+         {0, 0, 0, -1, 0, 0, 0, 15, 0, 0,},
+         {0, 0, 0, 0, 0, 0, 0, 5, 0, 0,},
+         {0, 0, 0, 0, 0, 0, 0, 5, 0, 0,},
          {0, 0, -1, 0, 0, 0, 0, 0, 0, 0,},
          {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
-         {0, 0, 0, 0, 0, 0, 0, 0, 0, 1,}};
+         {0, 0, 14, 4, 14, 4, 0, 0, 0, 1,}};
+
+int hits[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,};
 
 void top_border(int largeur)
 { //ligne du dessus
@@ -45,7 +47,7 @@ void Total_Bar(int largeur, int m, int j)
     char display;
     for (m = 0; m < largeur - 1; ++m)
     {
-        printf("%3d", m + 1);
+        printf("%3d", m);
         for (j = 0; j < largeur; ++j) //première ligne
         {
             display = '~';
@@ -69,7 +71,7 @@ void Total_Bar(int largeur, int m, int j)
         }
         printf("───┤\n");
     }
-    printf("%3d", largeur);
+    printf("%3d", largeur - 1);
     for (j = 0; j < largeur; ++j) //autre ligne espacement
     {
         display = '~';
@@ -96,6 +98,10 @@ void Bottom_border(int largeur) //ligne du bas
         printf("───┴");
     }
     printf("───┘\n\n");
+    for (int m = 1; m <= 5; ++m)
+    {
+        printf("%d \n", hits[m]);
+    };
 }
 
 void tir()
@@ -107,7 +113,7 @@ void tir()
     printf("entrez les coordonées (lettre en majuscule puis nombre)\n");
     scanf("%s", &tir);
     ligne = tir[0] - 65;
-    col = tir[1] - 49;
+    col = tir[1] - 48;
 
     while (col < 0 || col > 9 || ligne < 0 || ligne > 9)
     {
@@ -118,23 +124,97 @@ void tir()
         ligne = tir[0] - 65;
         col = tir[1] - 49;
     }
-
-    if (tableau1 [col][ligne] > 0 && tableau1[col][ligne] < 10)
+    //évaluer le résultat du tir
+    if (tableau1[col][ligne] > 0 && tableau1[col][ligne] < 10)
     {
         printf("touché\n");
-        tableau1[col][ligne] += 10;
-    }else if (tableau1 [col][ligne] > 20 && tableau1[col][ligne] < 30){
-        printf("coulé\n");
+        hits [tableau1[col][ligne]] ++;
         tableau1[col][ligne] += 10;
     } else
     {
         printf("pas touché\n");
-        tableau1 [col][ligne] = -1;
+        tableau1[col][ligne] = -1;
+    }
+    //évaluer les bateaux coulé
+}
+
+
+void coule(int x, int y)
+{
+    //Fonction Couler
+    for (int i = 1; i <= 4; i++)
+    {
+        if (hits[i] == 1)
+        {
+            for (int s = 0; s < 9; s++) //for (x = 0; x < 9; x++)
+            {
+                for (int u = 0; u < 9; u++)
+                {
+                    if (tableau1[x][y] == 11)// || tableau1[x][y] == 13 || tableau1[x][y] == 14)
+                    {
+                        tableau1[x][y] += 10;
+                    }
+                }
+            }
+        }
+        if (hits[i] == 2)
+        {
+            for (int s = 0; s < 9; s++) //for (x = 0; x < 9; x++)
+            {
+                for (int u = 0; u < 9; u++)
+                {
+                    if (tableau1[x][y] == 12)// || tableau1[x][y] == 13 || tableau1[x][y] == 14)
+                    {
+                        tableau1[x][y] += 10;
+                    }
+                }
+            }
+        }
+        if (hits[i] == 3)
+        {
+            for (int s = 0; s < 9; s++) //for (x = 0; x < 9; x++)
+            {
+                for (int u = 0; u < 9; u++)
+                {
+                    if (tableau1[x][y] == 13)// || tableau1[x][y] == 13 || tableau1[x][y] == 14)
+                    {
+                        tableau1[x][y] += 10;
+                    }
+                }
+            }
+        }
+        if (hits[i] == 4)
+        {
+            for (int s = 0; s < 9; s++) //for (x = 0; x < 9; x++)
+            {
+                for (int u = 0; u < 9; u++)
+                {
+                    if (tableau1[x][y] == 14)// || tableau1[x][y] == 13 || tableau1[x][y] == 14)
+                    {
+                        tableau1[x][y] += 10;
+                    }
+                }
+            }
+        }
+        if (hits[i] == 5)
+        {
+            for (int s = 0; s < 9; s++) //for (x = 0; x < 9; x++)
+            {
+                for (int u = 0; u < 9; u++)
+                {
+                    if (tableau1[x][y] == 15)// || tableau1[x][y] == 13 || tableau1[x][y] == 14)
+                    {
+                        tableau1[x][y] += 10;
+                    }
+                }
+            }
+        }
     }
 }
 
 
-int main()
+
+    int main()
 {
     int choix = 0;
     SetConsoleOutputCP(65001);
@@ -201,6 +281,7 @@ int main()
                 Total_Bar(grille, tableau1[10][10], tableau1[10][10]);
                 Bottom_border(grille);
                 tir();
+                coule(tableau1[10][10],tableau1[10][10]);
             }
 
         } else if (choix == 3)
