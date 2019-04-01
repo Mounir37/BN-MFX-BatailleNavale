@@ -26,6 +26,26 @@ int tableau1[grille][grille] =
 
 int hits[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,};
 
+void coule(int x, int y)
+{
+    //Fonction Coulé
+    for (int i = 1; i <= 4; i++)
+    {
+        if (hits[i] == i)
+        {
+            for (int s = 0; s < 9; s++) //for (x = 0; x < 9; x++)
+            {
+                for (int u = 0; u < 9; u++)
+                {
+                    if (tableau1[x][y] == 10 + i)// || tableau1[x][y] == 13 || tableau1[x][y] == 14)
+                    {
+                        tableau1[x][y] += 10;
+                    }
+                }
+            }
+        }
+    }
+}
 void top_border(int largeur)
 { //ligne du dessus
     printf("     ");
@@ -130,88 +150,17 @@ void tir()
         printf("touché\n");
         hits [tableau1[col][ligne]] ++;
         tableau1[col][ligne] += 10;
-    } else
+    }
+    else if (hits[10] == tableau1[grille][grille]){
+        printf("coulé\n");
+    }
+    else
     {
         printf("pas touché\n");
         tableau1[col][ligne] = -1;
     }
     //évaluer les bateaux coulé
 }
-
-
-void coule(int x, int y)
-{
-    //Fonction Couler
-    for (int i = 1; i <= 4; i++)
-    {
-        if (hits[i] == 1)
-        {
-            for (int s = 0; s < 9; s++) //for (x = 0; x < 9; x++)
-            {
-                for (int u = 0; u < 9; u++)
-                {
-                    if (tableau1[x][y] == 11)// || tableau1[x][y] == 13 || tableau1[x][y] == 14)
-                    {
-                        tableau1[x][y] += 10;
-                    }
-                }
-            }
-        }
-        if (hits[i] == 2)
-        {
-            for (int s = 0; s < 9; s++) //for (x = 0; x < 9; x++)
-            {
-                for (int u = 0; u < 9; u++)
-                {
-                    if (tableau1[x][y] == 12)// || tableau1[x][y] == 13 || tableau1[x][y] == 14)
-                    {
-                        tableau1[x][y] += 10;
-                    }
-                }
-            }
-        }
-        if (hits[i] == 3)
-        {
-            for (int s = 0; s < 9; s++) //for (x = 0; x < 9; x++)
-            {
-                for (int u = 0; u < 9; u++)
-                {
-                    if (tableau1[x][y] == 13)// || tableau1[x][y] == 13 || tableau1[x][y] == 14)
-                    {
-                        tableau1[x][y] += 10;
-                    }
-                }
-            }
-        }
-        if (hits[i] == 4)
-        {
-            for (int s = 0; s < 9; s++) //for (x = 0; x < 9; x++)
-            {
-                for (int u = 0; u < 9; u++)
-                {
-                    if (tableau1[x][y] == 14)// || tableau1[x][y] == 13 || tableau1[x][y] == 14)
-                    {
-                        tableau1[x][y] += 10;
-                    }
-                }
-            }
-        }
-        if (hits[i] == 5)
-        {
-            for (int s = 0; s < 9; s++) //for (x = 0; x < 9; x++)
-            {
-                for (int u = 0; u < 9; u++)
-                {
-                    if (tableau1[x][y] == 15)// || tableau1[x][y] == 13 || tableau1[x][y] == 14)
-                    {
-                        tableau1[x][y] += 10;
-                    }
-                }
-            }
-        }
-    }
-}
-
 
 
     int main()
