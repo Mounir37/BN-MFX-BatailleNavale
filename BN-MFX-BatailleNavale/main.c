@@ -14,32 +14,43 @@
 
 int tableau1[grille][grille] =
         {{3, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
-         {13, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
-         {3, 0, 22, 22, 0, 0, 0, 15, 0, 0,},
-         {0, 0, 0, 0, 0, 0, 0, 15, 0, 0,},
-         {0, 0, 0, -1, 0, 0, 0, 15, 0, 0,},
+         {3, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+         {3, 0, 2, 2, 0, 0, 0, 5, 0, 0,},
          {0, 0, 0, 0, 0, 0, 0, 5, 0, 0,},
          {0, 0, 0, 0, 0, 0, 0, 5, 0, 0,},
-         {0, 0, -1, 0, 0, 0, 0, 0, 0, 0,},
+         {0, 0, 0, 0, 0, 0, 0, 5, 0, 0,},
+         {0, 0, 0, 0, 0, 0, 0, 5, 0, 0,},
          {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
-         {0, 0, 14, 4, 14, 4, 0, 0, 0, 1,}};
+         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+         {0, 0, 4, 4, 4, 4, 0, 0, 0, 1,}};
 
 int hits[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,};
 
-void coule(int x, int y)
+void coule()
 {
     //Fonction Coulé
-    for (int i = 1; i <= 4; i++)
+    for (int i = 1; i <= 5; i++)
     {
         if (hits[i] == i)
         {
+            printf("coulé\n");
             for (int s = 0; s < 9; s++) //for (x = 0; x < 9; x++)
             {
                 for (int u = 0; u < 9; u++)
                 {
-                    if (tableau1[x][y] == 10 + i)// || tableau1[x][y] == 13 || tableau1[x][y] == 14)
+                    if (tableau1[s][u] == 10 + i)// || tableau1[x][y] == 13 || tableau1[x][y] == 14)
                     {
-                        tableau1[x][y] += 10;
+                        tableau1[s][u] += 10;
+                    }
+                    if (hits[i] == 1)
+                    {
+                        if (tableau1[s][u] == 1)
+                        {
+                            tableau1[s][u] += 20;
+                            printf("coulé\n");
+                            Sleep(1000);
+                            system("cls");
+                        }
                     }
                 }
             }
@@ -75,7 +86,7 @@ void Total_Bar(int largeur, int m, int j)
                 display = '/';
             }
             else if (tableau1[m][j] > 10 && tableau1[m][j] < 20 ){
-                display = 'x';
+                display = '*';
             }
             else if (tableau1[m][j] > 20 && tableau1[m][j] < 30 ){
                 display = 'X';
@@ -99,7 +110,7 @@ void Total_Bar(int largeur, int m, int j)
             display = '/';
         }
         else if (tableau1[m][j] > 10 && tableau1[m][j] < 20 ){
-            display = 'x';
+            display = '*';
         }
         else if (tableau1[m][j] > 20 && tableau1[m][j] < 30 ){
             display = 'X';
@@ -121,7 +132,7 @@ void Bottom_border(int largeur) //ligne du bas
     for (int m = 1; m <= 5; ++m)
     {
         printf("%d \n", hits[m]);
-    };
+    }
 }
 
 void tir()
@@ -145,21 +156,26 @@ void tir()
         col = tir[1] - 49;
     }
     //évaluer le résultat du tir
-    if (tableau1[col][ligne] > 0 && tableau1[col][ligne] < 10)
+    int valcase = tableau1[col][ligne];
+    if (valcase > 0 && valcase < 10)
     {
         printf("touché\n");
-        hits [tableau1[col][ligne]] ++;
+        Sleep(1000);
+        system("cls");
+        hits[valcase]++;
         tableau1[col][ligne] += 10;
-    }
-    else if (hits[10] == tableau1[grille][grille]){
-        printf("coulé\n");
-    }
-    else
+    } else if (valcase == 0)
     {
         printf("pas touché\n");
+        Sleep(1000);
+        system("cls");
         tableau1[col][ligne] = -1;
+    } else
+    {
+        printf("tir invalide");
+        Sleep(1000);
+        system("cls");
     }
-    //évaluer les bateaux coulé
 }
 
 
@@ -230,7 +246,7 @@ void tir()
                 Total_Bar(grille, tableau1[10][10], tableau1[10][10]);
                 Bottom_border(grille);
                 tir();
-                coule(tableau1[10][10],tableau1[10][10]);
+                coule();
             }
 
         } else if (choix == 3)
