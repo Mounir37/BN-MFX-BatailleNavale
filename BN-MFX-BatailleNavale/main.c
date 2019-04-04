@@ -25,6 +25,7 @@ int tableau1[grille][grille] =
          {0, 0, 4, 4, 4, 4, 0, 0, 0, 1,}};
 
 int hits[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,};
+int compteur = 2;
 
 void coule()
 {
@@ -33,30 +34,22 @@ void coule()
     {
         if (hits[i] == i)
         {
-            printf("coulé\n");
-            for (int s = 0; s < 9; s++) //for (x = 0; x < 9; x++)
+
+            for (int s = 0; s < grille; s++) //for (x = 0; x < 9; x++)
             {
-                for (int u = 0; u < 9; u++)
+                for (int u = 0; u < grille; u++)
                 {
-                    if (tableau1[s][u] == 10 + i)// || tableau1[x][y] == 13 || tableau1[x][y] == 14)
+                    if (tableau1[s][u] == 10 + i)// || tableau1[x][y] == 13 || tableau1[x][y] == 14)         // sa printf le nombre du bateau le coulé
                     {
                         tableau1[s][u] += 10;
-                    }
-                    if (hits[i] == 1)
-                    {
-                        if (tableau1[s][u] == 1)
-                        {
-                            tableau1[s][u] += 20;
-                            printf("coulé\n");
-                            Sleep(1000);
-                            system("cls");
-                        }
+                        printf("coulé\n");
                     }
                 }
             }
         }
     }
 }
+
 void top_border(int largeur)
 { //ligne du dessus
     printf("     ");
@@ -82,13 +75,14 @@ void Total_Bar(int largeur, int m, int j)
         for (j = 0; j < largeur; ++j) //première ligne
         {
             display = '~';
-            if (tableau1[m][j] == -1 ){
+            if (tableau1[m][j] == -1)
+            {
                 display = '/';
-            }
-            else if (tableau1[m][j] > 10 && tableau1[m][j] < 20 ){
+            } else if (tableau1[m][j] > 10 && tableau1[m][j] < 20)
+            {
                 display = '*';
-            }
-            else if (tableau1[m][j] > 20 && tableau1[m][j] < 30 ){
+            } else if (tableau1[m][j] > 20 && tableau1[m][j] < 30)
+            {
                 display = 'X';
             }
 
@@ -106,13 +100,14 @@ void Total_Bar(int largeur, int m, int j)
     for (j = 0; j < largeur; ++j) //autre ligne espacement
     {
         display = '~';
-        if (tableau1[m][j] == -1 ){
+        if (tableau1[m][j] == -1)
+        {
             display = '/';
-        }
-        else if (tableau1[m][j] > 10 && tableau1[m][j] < 20 ){
+        } else if (tableau1[m][j] > 10 && tableau1[m][j] < 20)
+        {
             display = '*';
-        }
-        else if (tableau1[m][j] > 20 && tableau1[m][j] < 30 ){
+        } else if (tableau1[m][j] > 20 && tableau1[m][j] < 30)
+        {
             display = 'X';
         }
 
@@ -141,8 +136,10 @@ void tir()
     int ligne;
     int col;
 
-    printf("entrez les coordonées (lettre en majuscule puis nombre)\n");
+
+    printf("entrez les coordonées (lettre en majuscule puis nombre), il vous reste %d coups a jouer\n", compteur);
     scanf("%s", &tir);
+    compteur = compteur - 1;
     ligne = tir[0] - 65;
     col = tir[1] - 48;
 
@@ -151,35 +148,44 @@ void tir()
         printf("ce n'est pas un choix\n");
         printf("entrez les coordonées (lettre en majuscule puis nombre)\n");
         scanf("%s", &tir);
+        compteur = compteur - 1;
 
         ligne = tir[0] - 65;
         col = tir[1] - 49;
+        if (compteur == 0)                                                             //sa marche pas
+        {
+            printf(" __      __                                                        _         _ \n"
+                   " \\ \\    / /                                                       | |       | |\n"
+                   "  \\ \\  / /__  _   _ ___    __ ___   _____ ____  _ __   ___ _ __ __| |_   _  | |\n"
+                   "   \\ \\/ / _ \\| | | / __|  / _` \\ \\ / / _ \\_  / | '_ \\ / _ \\ '__/ _` | | | | | |\n"
+                   "    \\  / (_) | |_| \\__ \\ | (_| |\\ V /  __// /  | |_) |  __/ | | (_| | |_| | |_|\n"
+                   "     \\/ \\___/ \\__,_|___/  \\__,_| \\_/ \\___/___| | .__/ \\___|_|  \\__,_|\\__,_| (_)\n"
+                   "                                               | |                             \n"
+                   "                                               |_|                             ");
+        }
     }
     //évaluer le résultat du tir
     int valcase = tableau1[col][ligne];
     if (valcase > 0 && valcase < 10)
     {
         printf("touché\n");
-        Sleep(1000);
-        system("cls");
+
         hits[valcase]++;
         tableau1[col][ligne] += 10;
     } else if (valcase == 0)
     {
         printf("pas touché\n");
-        Sleep(1000);
-        system("cls");
+
         tableau1[col][ligne] = -1;
     } else
     {
         printf("tir invalide");
-        Sleep(1000);
-        system("cls");
+
     }
 }
 
 
-    int main()
+int main()
 {
     int choix = 0;
     SetConsoleOutputCP(65001);
@@ -220,7 +226,6 @@ void tir()
     while (1)
     {
         printf(""
-               ""
                ""
                "choisissez:\n"
                "1:  pour afficher l'aide.\n"
