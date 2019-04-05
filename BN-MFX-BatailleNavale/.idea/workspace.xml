@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/main.c" line="226" />
+    <bookmark url="file://$PROJECT_DIR$/main.c" line="238" />
   </component>
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
@@ -36,8 +36,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="41" column="150" selection-start-line="41" selection-start-column="150" selection-end-line="41" selection-end-column="150" />
+            <state relative-caret-position="544">
+              <caret line="192" column="8" selection-start-line="192" selection-start-column="8" selection-end-line="192" selection-end-column="8" />
               <folding>
                 <element signature="e#126#144#0" expanded="true" />
               </folding>
@@ -80,8 +80,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
       <pane id="Scope" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -156,11 +156,12 @@
       <workItem from="1554365400602" duration="165000" />
       <workItem from="1554366043414" duration="1873000" />
       <workItem from="1554378322242" duration="7731000" />
+      <workItem from="1554444393707" duration="3918000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65312000" />
+    <option name="totallyTimeSpent" value="69230000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
@@ -197,8 +198,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="41" column="150" selection-start-line="41" selection-start-column="150" selection-end-line="41" selection-end-column="150" />
+        <state relative-caret-position="544">
+          <caret line="192" column="8" selection-start-line="192" selection-start-column="8" selection-end-line="192" selection-end-column="8" />
           <folding>
             <element signature="e#126#144#0" expanded="true" />
           </folding>

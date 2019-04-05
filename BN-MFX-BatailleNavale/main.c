@@ -2,8 +2,8 @@
  * Auteur: Mounir Fiaux
  * Projet: Bataille Navale
  * Titre: BN-MFX-BatailleNavale
- * Date: 28.03.19
- * Version: 1.3.3
+ * Date: 05.04.19
+ * Version: 1.5.1
  */
 #include <stdio.h>
 #include <windows.h>
@@ -26,11 +26,13 @@ int tableau1[grille][grille] =
 
 int hits[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,};
 int compteur = 2;
+int i;
+
 
 void coule()
 {
     //Fonction Coulé
-    for (int i = 1; i <= 5; i++)
+    for (i = 1; i <= 5; i++)
     {
         if (hits[i] == i)
         {
@@ -59,14 +61,14 @@ void top_border(int largeur)
     }
     printf("\n");
     printf("   ┌");
-    for (int i = 0; i < largeur - 1; ++i)
+    for (i = 0; i < largeur - 1; ++i)
     {
         printf("───┬");
     }
     printf("───┐\n");
 }
 
-void Total_Bar(int largeur, int m, int j)
+void Total_Bar(int largeur, int m, int j)   // ligne total
 {
     char display;
     for (m = 0; m < largeur - 1; ++m)
@@ -145,14 +147,14 @@ void tir()
 
     while (col < 0 || col > 9 || ligne < 0 || ligne > 9)
     {
-        printf("ce n'est pas un choix\n");
+        printf("ce n'est pas un choix, crétin!!!\n");
         printf("entrez les coordonées (lettre en majuscule puis nombre)\n");
         scanf("%s", &tir);
         compteur = compteur - 1;
 
         ligne = tir[0] - 65;
         col = tir[1] - 49;
-        if (compteur == 0)                                                             //sa marche pas
+        if (compteur == 0)
         {
             printf(" __      __                                                        _         _ \n"
                    " \\ \\    / /                                                       | |       | |\n"
@@ -180,6 +182,16 @@ void tir()
     } else
     {
         printf("tir invalide");
+
+    }
+}
+
+int gameover (){
+    if (compteur == 0){
+        return -1;
+    }else if (hits[i] == 21 && hits[i] == 22 && hits[i] == 23 && hits[i] == 24 && hits[i] == 25){ //hits[i] != 1 && hits[i] != 2 && hits[i] != 3 && hits[i] != 4 && hits[i] != 5 && hits[i] != 11 && hits[i] != 12 && hits[i] != 13 && hits[i] != 14 && hits[i] != 15
+        ;
+    }else{
 
     }
 }
@@ -245,7 +257,7 @@ int main()
                    "1 torpilleur (2 cases)\n\n\n");
         } else if (choix == 2)
         {
-            while (1)
+            while (gameover != 0)
             {
                 top_border(grille);
                 Total_Bar(grille, tableau1[10][10], tableau1[10][10]);
