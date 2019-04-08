@@ -25,8 +25,31 @@ int tableau1[grille][grille] =
          {0, 0, 4, 4, 4, 4, 0, 0, 0, 1,}};
 
 int hits[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,};
-int compteur = 2;
+int compteur = 30;
 int i;
+
+int nextValue(FILE* fich)
+{
+    char c = fgetc(fich);
+    while (c < '0' || c > '5')
+    {
+        c = fgetc(fich);
+    }
+    return c-48;
+}
+
+void charger_grille(){
+    FILE* fich;     // Poignée de fichier
+
+    fich = fopen("..\\Grille\\Grille1.txt", "r"); // On 'fixe' la poignée sur le fichier 'fichier.txt',
+    for (int m = 0; m < grille ; ++m)
+    {
+        for (int n = 0; n < grille ; ++n)
+        {
+        tableau1[m][n] = nextValue(fich);
+        }
+    }
+}
 
 
 void coule()
@@ -36,15 +59,16 @@ void coule()
     {
         if (hits[i] == i)
         {
-
+            printf(" vous avez coulé de %d\n",i);
             for (int s = 0; s < grille; s++) //for (x = 0; x < 9; x++)
             {
                 for (int u = 0; u < grille; u++)
                 {
-                    if (tableau1[s][u] == 10 + i)// || tableau1[x][y] == 13 || tableau1[x][y] == 14)         // sa printf le nombre du bateau le coulé
+                    if (tableau1[s][u] == 10 +
+                                          i)// || tableau1[x][y] == 13 || tableau1[x][y] == 14)         // sa printf le nombre du bateau le coulé
                     {
                         tableau1[s][u] += 10;
-                        printf("coulé\n");
+
                     }
                 }
             }
@@ -126,10 +150,6 @@ void Bottom_border(int largeur) //ligne du bas
         printf("───┴");
     }
     printf("───┘\n\n");
-    for (int m = 1; m <= 5; ++m)
-    {
-        printf("%d \n", hits[m]);
-    }
 }
 
 void tir()
@@ -154,17 +174,6 @@ void tir()
 
         ligne = tir[0] - 65;
         col = tir[1] - 49;
-        if (compteur == 0)
-        {
-            printf(" __      __                                                        _         _ \n"
-                   " \\ \\    / /                                                       | |       | |\n"
-                   "  \\ \\  / /__  _   _ ___    __ ___   _____ ____  _ __   ___ _ __ __| |_   _  | |\n"
-                   "   \\ \\/ / _ \\| | | / __|  / _` \\ \\ / / _ \\_  / | '_ \\ / _ \\ '__/ _` | | | | | |\n"
-                   "    \\  / (_) | |_| \\__ \\ | (_| |\\ V /  __// /  | |_) |  __/ | | (_| | |_| | |_|\n"
-                   "     \\/ \\___/ \\__,_|___/  \\__,_| \\_/ \\___/___| | .__/ \\___|_|  \\__,_|\\__,_| (_)\n"
-                   "                                               | |                             \n"
-                   "                                               |_|                             ");
-        }
     }
     //évaluer le résultat du tir
     int valcase = tableau1[col][ligne];
@@ -181,19 +190,25 @@ void tir()
         tableau1[col][ligne] = -1;
     } else
     {
-        printf("tir invalide");
+        printf("tir invalide\n");
 
     }
 }
 
-int gameover (){
-    if (compteur == 0){
+int gameover()
+{
+    if (compteur == 0) //le joueur à utilisé tout ses coups
+    {
         return -1;
-    }else if (hits[i] == 21 && hits[i] == 22 && hits[i] == 23 && hits[i] == 24 && hits[i] == 25){ //hits[i] != 1 && hits[i] != 2 && hits[i] != 3 && hits[i] != 4 && hits[i] != 5 && hits[i] != 11 && hits[i] != 12 && hits[i] != 13 && hits[i] != 14 && hits[i] != 15
-        ;
-    }else{
-
     }
+    for (i = 1; i <= 5; i++) //vérifie si il reste des bateaux sur la grille
+    {
+        if (hits[i] != i)
+        {
+            return 0;  //oui: la partie continue
+        }
+    }
+    return 1; //signifie que la partie est gagnée
 }
 
 
@@ -257,13 +272,35 @@ int main()
                    "1 torpilleur (2 cases)\n\n\n");
         } else if (choix == 2)
         {
-            while (gameover != 0)
+            charger_grille();
+            while (gameover() == 0)
             {
                 top_border(grille);
                 Total_Bar(grille, tableau1[10][10], tableau1[10][10]);
                 Bottom_border(grille);
                 tir();
                 coule();
+            }
+            if (gameover() == 1)
+            {
+                printf(" __      __                                                                  \n"
+                       " \\ \\    / /                                                                  \n"
+                       "  \\ \\  / /__  _   _ ___    __ ___   _____ ____   __ _  __ _  __ _ _ __   ___ \n"
+                       "   \\ \\/ / _ \\| | | / __|  / _` \\ \\ / / _ \\_  /  / _` |/ _` |/ _` | '_ \\ / _ \\\n"
+                       "    \\  / (_) | |_| \\__ \\ | (_| |\\ V /  __// /  | (_| | (_| | (_| | | | |  __/\n"
+                       "     \\/ \\___/ \\__,_|___/  \\__,_| \\_/ \\___/___|  \\__, |\\__,_|\\__, |_| |_|\\___|\n"
+                       "                                                 __/ |       __/ |           \n"
+                       "                                                |___/       |___/            \n\n");
+            } else
+            {
+                printf(" __      __                                                        _         _ \n"
+                       " \\ \\    / /                                                       | |       | |\n"
+                       "  \\ \\  / /__  _   _ ___    __ ___   _____ ____  _ __   ___ _ __ __| |_   _  | |\n"
+                       "   \\ \\/ / _ \\| | | / __|  / _` \\ \\ / / _ \\_  / | '_ \\ / _ \\ '__/ _` | | | | | |\n"
+                       "    \\  / (_) | |_| \\__ \\ | (_| |\\ V /  __// /  | |_) |  __/ | | (_| | |_| | |_|\n"
+                       "     \\/ \\___/ \\__,_|___/  \\__,_| \\_/ \\___/___| | .__/ \\___|_|  \\__,_|\\__,_| (_)\n"
+                       "                                               | |                             \n"
+                       "                                               |_|                             \n\n");
             }
 
         } else if (choix == 3)
@@ -275,3 +312,46 @@ int main()
         }
     }
 }
+
+//#include <stdio.h>
+//#include <windows.h>
+//
+//#define SIZE 100
+//
+//int nextValue(FILE* fich)
+//{
+//    char c = fgetc(fich);
+//    while (c < '0' || c > '5')
+//    {
+//        c = fgetc(fich);
+//    }
+//    return c-48;
+//}
+//
+//int main() {
+//
+//    SetConsoleOutputCP(65001); // Pour les accents
+//
+//    int tab[SIZE];  // données (modèle)
+//    FILE* fich;     // Poignée de fichier
+//
+//    // ============ Lecture du fichier =============
+//    fich = fopen("fichier1.txt", "r"); // On 'fixe' la poignée sur le fichier 'fichier.txt',
+//
+//    // en indiquant que l'on va lire ('r') cette fois
+//    int i = 0; // compteur de caractères
+//    for (int i=0; i<SIZE; i++)
+//    {
+//        tab[i] = nextValue(fich);         // Stocker le chiffre dans le modèle
+//    }
+//
+//    // ============ Vérification =============
+//    printf("Résultat (relecture du fichier): ");
+//    for (int i=0; i < SIZE; i++)
+//    {
+//        printf("%d  ",tab[i]);
+//    }
+//    printf("\n");
+//
+//    return 0;
+//}
